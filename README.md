@@ -1,12 +1,15 @@
 [AppreciateUI](http://www.appreciateui.com)
 ========================
 
+![Screenshot](https://raw.github.com/thedillonb/appreciateui-web/master/screenshot.png)
+
 Summary
 ---------------
 
 This repository contains the code necessary for the [AppreciateUI](http://www.appreciateui.com) front-end web application.
 The project is written to leverege the JSON API provided by the AppreciateUI backend and display the UI images in a
 responsive web application. The project uses AngularJS and jQuery.
+
 
 Native Mobile Application
 --------------------------
