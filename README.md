@@ -16,7 +16,8 @@ Native Mobile Application
 
 The original project was created for native mobile use only on the iOS platform which can be found in the 
 [iTunes Store](https://itunes.apple.com/us/app/appreciateui/id651317060?ls=1&mt=8) but I found it to be useful to create
-a web specific application as well which spawned this project.
+a web specific application as well which spawned this project. I have also posted the mobile source code which can be
+found on github: [appreciateui](https://github.com/thedillonb/appreciateui).
 
 
 
