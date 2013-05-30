@@ -68,6 +68,7 @@ body > header > h1 > span {
     box-sizing: border-box;
 }
 
+
 #sidebar .inner-sidebar {
     position: absolute;
     left: 0;
@@ -75,6 +76,7 @@ body > header > h1 > span {
     bottom: 0;
     right: 0;    
 }
+
 
 #sidebar ul {
     list-style: none;

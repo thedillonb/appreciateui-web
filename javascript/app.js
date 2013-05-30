@@ -1,6 +1,12 @@
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 var screenshotUrl = '/api/screenshots.php';
 var categoriesUrl = '/api/categories.php';
+var slimOptions = {
+    height: 'auto',
+    railVisible: true,
+    size: '10px',
+    railColor: '#111',
+};
 
 /*
     Setup angular!
@@ -71,7 +77,7 @@ function CategoryCtrl($scope, $rootScope, $http, $routeParams) {
 function CategoryMenuCtrl($scope, Categories) {
     Categories.getAll(function(data) {
         $scope.categories = data;
-        if (!isMobile) { $('#sidebar .inner-sidebar').slimScroll({height: 'auto'}); }
+        if (!isMobile) { $('#sidebar .inner-sidebar').slimScroll(slimOptions); }
     });
 }
 
@@ -98,7 +104,7 @@ function TitleCtrl($scope, $rootScope, Categories) {
 */
 function updateScreenshotScroll() {
     if (!isMobile) {  
-        $('#screenshots').slimScroll({height: 'auto'}); 
+        $('#screenshots').slimScroll(slimOptions); 
     }
 }
 
@@ -143,8 +149,8 @@ $(function() {
 $(window).resize(function() {
     //Dont apply the custom scrollbar to non-mobile devices
     if (!isMobile) {
-        $('#sidebar .inner-sidebar').slimScroll({height: 'auto'});
-        $('#screenshots').slimScroll({height: 'auto'});
+        $('#sidebar .inner-sidebar').slimScroll(slimOptions);
+        $('#screenshots').slimScroll(slimOptions);
     }
     
     //Always try to refresh the unveil plugin so that pictures show up
