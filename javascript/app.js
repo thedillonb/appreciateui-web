@@ -1,6 +1,6 @@
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-var screenshotUrl = 'http://www.appreciateui.com/api/screenshots.php';
-var categoriesUrl = 'http://www.appreciateui.com/api/categories.php';
+var screenshotUrl = '/api/screenshots.php';
+var categoriesUrl = '/api/categories.php';
 var slimOptions = {
     height: 'auto',
     railVisible: true,
