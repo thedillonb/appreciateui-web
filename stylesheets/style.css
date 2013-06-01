@@ -1,5 +1,5 @@
 body {
-    background: #43444f url(/images/page-background.png);
+    background: #43444f url(../images/page-background.png);
     overflow: hidden;
     font-family: "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
     text-rendering: optimizelegibility;
@@ -17,7 +17,7 @@ header a, #sidebar a {
 }
 
 header {
-    background: url(/images/navbar.png);
+    background: url(../images/navbar.png);
     background-repeat: repeat-x;
     background-origin: content-box;
     background-size: 100% 100%;
@@ -30,7 +30,7 @@ body > header {
     top: 0;
     left: 0;
     right: 0;
-    background: url(/images/header-background.png);
+    background: url(../images/header-background.png);
     border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
@@ -69,6 +69,24 @@ body > header > h1 > span {
 }
 
 
+#top-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 48px;
+    right: 0;  
+}
+
+#bottom-sidebar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 44px;
+    border-top: 1px solid #222;
+    box-shadow: 0 -2px 6px #333;
+}
+
 #sidebar .inner-sidebar {
     position: absolute;
     left: 0;
@@ -89,12 +107,20 @@ body > header > h1 > span {
     background: transparent;
 }
 
+#sidebar ul:first-child {
+    margin-top: 15px;
+}
+
 #sidebar li {
     padding-left: 20px;
 }
 
+#sidebar li:not(.active):hover {
+    background: url(../images/list-background.png) repeat-x;
+}
+
 #sidebar li.active {
-    background: url(/images/list-background.png) 0 -29px repeat-x;
+    background: url(../images/list-background.png) 0 -29px repeat-x;
 }
 
 #sidebar h3, #sidebar li a {
@@ -120,12 +146,12 @@ body > header > h1 > span {
 
 #sidebar li i {
     float: left;
-    margin: 5px 17px 0 16px;
+    margin: 5px 10px 0 0px;
     pointer-events: none;
 }
 
 #sidebar h3 {
-    padding: 5px 0 2px 20px;
+    padding: 10px 0 0px 20px;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -135,7 +161,7 @@ body > header > h1 > span {
 
 #wrapper {
     position: absolute;
-    background: url(/images/background.png);
+    background: url(../images/background.png);
     top: 0;
     left: 261px;
     right: 0;
@@ -212,7 +238,7 @@ body > header > h1 > span {
 #wrapper > header > .right-controls {
     position: absolute;
     right: 8px;
-    top: 8px; 
+    top: 10px; 
 }
 
 #wrapper > header > h1 {
@@ -255,22 +281,22 @@ body > header > h1 > span {
     display: block;
     width: 17px;
     height: 17px;
-    background: url(/images/logo.png) no-repeat;
+    background: url(../images/logo.png) no-repeat;
     background-size: 100% 100%;
     float: left;
     margin: 0px 0px 0 0px;
     pointer-events: none;
 }
 
-
-@media (max-width: 600px) {
-    .mobile-hidden {
-        display: none;
-    }   
+a.app-download > i {
+    opacity: 0.8;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
-@media (min-width: 601px) {
-    .icon-logo {
-        margin-right: 5px;
-    }   
+a.app-download:hover > i {
+    opacity: 1;
 }

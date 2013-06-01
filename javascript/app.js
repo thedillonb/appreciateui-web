@@ -1,6 +1,6 @@
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-var screenshotUrl = '/api/screenshots.php';
-var categoriesUrl = '/api/categories.php';
+var screenshotUrl = 'http://www.appreciateui.com/api/screenshots.php';
+var categoriesUrl = 'http://www.appreciateui.com/api/categories.php';
 var slimOptions = {
     height: 'auto',
     railVisible: true,
@@ -14,8 +14,8 @@ var slimOptions = {
 var app = angular.module('app', []).
     config(function($routeProvider) {
         $routeProvider.
-              when('/', {controller:RecentCtrl, templateUrl:'list.html'}).
-              when('/category/:id', {controller:CategoryCtrl, templateUrl:'list.html'}).
+              when('/', {controller: RecentCtrl, templateUrl: 'list.html'}).
+              when('/category/:id', {controller: CategoryCtrl, templateUrl: 'list.html'}).
               otherwise({redirectTo:'/'});
     }).
     /*
@@ -40,6 +40,17 @@ var app = angular.module('app', []).
                 cb(data);
             });
         };
+
+        Categories.getNameById = function(id, callback) {
+            //Set the page title depending on the name of the category
+            Categories.getAll(function(data) {
+                angular.forEach(data, function(d) {
+                    if (d.id == id) {
+                        return callback(d.name);
+                    }
+                })
+            });
+        };
         
         return Categories;
     });
@@ -48,7 +59,7 @@ var app = angular.module('app', []).
     Controller for the recent view
 */
 function RecentCtrl($scope, $rootScope, $http) {
-    $rootScope.selectedCategoryId = -1;
+    $rootScope.pageTitle = "Recently Added";
     $http.get(screenshotUrl + '?recent=true').success(function(data) {
         $scope.screenshots = massageScreenshotData(data);
         updateScreenshotScroll();
@@ -60,9 +71,13 @@ function RecentCtrl($scope, $rootScope, $http) {
 /*
     Controller for the category view
 */
-function CategoryCtrl($scope, $rootScope, $http, $routeParams) {
+function CategoryCtrl($scope, $rootScope, $http, $routeParams, Categories) {
     var catId = $routeParams.id;
-    $rootScope.selectedCategoryId = catId;
+
+    Categories.getNameById(catId, function(name) {
+        $rootScope.pageTitle = name;
+    });
+
     $http.get(screenshotUrl + '?cat=' + catId).success(function(data) {
         $scope.screenshots = massageScreenshotData(data); 
         updateScreenshotScroll();
@@ -84,20 +99,7 @@ function CategoryMenuCtrl($scope, Categories) {
 /*
     Controls the title found at the top of the page
 */
-function TitleCtrl($scope, $rootScope, Categories) {
-    $rootScope.$watch('selectedCategoryId', function() {
-        if ($rootScope.selectedCategoryId === -1) {
-            return $scope.title = "Recent";
-        }
-        Categories.getAll(function(data) {
-            angular.forEach(data, function(d) {
-                if (d.id == $rootScope.selectedCategoryId) {
-                    $scope.title = d.name;
-                }
-            })
-        });
-    })
-}
+function TitleCtrl() { }
 
 /*
     Updates the screenshot div 'slimScroll' plugin
@@ -126,6 +128,30 @@ function unveil() {
     var $unveilParent = isMobile ? $screenshots.parent() : $screenshots; 
     $('img.lazy-load').unveil({view: $unveilParent});
 }
+
+/*
+    Menu Directive
+*/
+app.directive('menuItem', ['$location', function($location) {
+    return {
+        restrict: 'A',
+        scope: {
+            href: '@',
+            menuItem: '@'
+        },
+        template: '<a href="{{href}}">{{menuItem}}</a>',
+        link: function(scope, element, attrs, controller) {
+            var path = scope.href.substring(1);
+            scope.$watch(function() { return $location.path(); }, function(newPath) {
+                if (path === newPath) {
+                    element.addClass('active');
+                } else {
+                    element.removeClass('active');
+                }
+            })
+        }
+    };
+}]);
 
 /*
     This code creates the slide out navigation bar

@@ -21,11 +21,19 @@
     
     <div id="sidebar">
         <div class="inner-sidebar" ng-controller="CategoryMenuCtrl">
-            <h3>Categories</h3>
-            <ul id="categories">
-                <li ng-repeat="category in categories" class="{{(selectedCategoryId == category.id) && 'active' || ''}}">
-                    <a href="#/category/{{category.id}}" data-id="{{category.id}}">{{category.name}}</a>
+            <ul>
+                <li>
+                    <a href="https://itunes.apple.com/us/app/appreciateui/id651317060?ls=1&mt=8" target="_blank" class="app-download">
+                        <i class="icon-logo"></i>
+                        Get The Mobile App!
+                    </a>
                 </li>
+            </ul>
+
+            <h3>Browse</h3>
+            <ul>
+                <li menu-item="Recently Added" href="#/"></li>
+                <li ng-repeat="category in categories" menu-item="{{category.name}}" href="#/category/{{category.id}}"></li>
             </ul>
         </div>
     </div>
@@ -42,16 +50,13 @@
                 </div>
             </div>
             
-            <h1 ng-controller="TitleCtrl">{{title}}</h1>
+            <h1 ng-controller="TitleCtrl">{{pageTitle}}</h1>
             
             <div class="right-controls">
-                <div class="btn-group" style="float: right">
-                    <a href="https://itunes.apple.com/us/app/appreciateui/id651317060?ls=1&mt=8" target="_blank">
-                        <i class="icon-logo"></i>
-                        <span class="mobile-hidden">
-                            Get The Mobile App! 
-                        </span>
-                    </a>
+                <div style="float: right">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.appreciateui.com" data-size="large" data-count="none">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+                    </script>
                 </div>
             </div>
         </header>
