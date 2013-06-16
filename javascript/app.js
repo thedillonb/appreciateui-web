@@ -11,16 +11,12 @@ var slimOptions = {
 /*
     Setup angular!
 */
-var app = angular.module('app', ['angular-google-analytics']).
-    config(function(AnalyticsProvider, $routeProvider) {
+var app = angular.module('app', ['analytics']).
+    config(function($routeProvider) {
         $routeProvider.
               when('/', {controller: RecentCtrl, templateUrl: 'list.html'}).
               when('/category/:id', {controller: CategoryCtrl, templateUrl: 'list.html'}).
               otherwise({redirectTo:'/'});
-
-        // Setup the analytics trackers
-        AnalyticsProvider.setAccount('UA-41138650-1');
-        AnalyticsProvider.trackPages(true);
     }).
     /*
         Categories object which represents the data for all the categories
