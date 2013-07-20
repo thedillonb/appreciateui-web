@@ -1,6 +1,8 @@
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 var screenshotUrl = '/api/screenshots.php';
 var categoriesUrl = '/api/categories.php';
+var iconsUrl = '/api/icons.php';
+
 var slimOptions = {
     height: 'auto',
     railVisible: true,
@@ -23,6 +25,7 @@ var app = angular.module('app', ['analytics']).
     config(function($routeProvider) {
         $routeProvider.
               when('/', {controller: RecentCtrl, templateUrl: 'list.html'}).
+              when('/icons', {controller: IconCtrl, templateUrl: 'icons.html'}).
               when('/category/:id', {controller: CategoryCtrl, templateUrl: 'list.html'}).
               otherwise({redirectTo:'/'});
     }).
@@ -70,6 +73,19 @@ function RecentCtrl($scope, $rootScope, $http) {
     $rootScope.pageTitle = "Recently Added";
     $http.get(screenshotUrl + '?recent=true').success(function(data) {
         $scope.screenshots = massageScreenshotData(data);
+        updateScreenshotScroll();
+    });
+    
+    $scope.$watch('screenshots', function() { $scope.$evalAsync(unveil); });
+}
+
+/*
+    Controller for the icons
+*/
+function IconCtrl($scope, $rootScope, $http) {
+    $rootScope.pageTitle = "All Icons";
+    $http.get(iconsUrl).success(function(data) {
+        $scope.screenshots = massageIconData(data);
         updateScreenshotScroll();
     });
     
@@ -125,6 +141,16 @@ function massageScreenshotData(data) {
     return angular.forEach(data, function(d) { 
         d.thumbUrl = "http://www.dillonbuchanan.com/appreciateui/downloader.php?id=" + d.url + "&w=296&h=444&ext=" + d.ext;
         d.fullUrl = "http://www.dillonbuchanan.com/appreciateui/uploads/" + d.url + "." + d.ext; 
+    });
+}
+
+/*
+    Massage the screenshot data on it's way back
+*/
+function massageIconData(data) {
+    return angular.forEach(data, function(d) { 
+        d.thumbUrl = "http://www.dillonbuchanan.com/appreciateui/icon_downloader.php?id=" + d.url + "&w=256&h=256&ext=" + d.ext;
+        d.fullUrl = "http://www.dillonbuchanan.com/appreciateui/uploads_icons/" + d.url + "." + d.ext; 
     });
 }
 

@@ -273,7 +273,20 @@ body > header > h1 > span {
   min-height: 444px;
 }
 
-#container .box img {
+#container .icon {
+  margin: 10px;
+  font-size: 11px;
+  line-height: 1.4em;
+  display: inline-block;
+  min-width: 256px;
+  min-height: 256px;
+}
+
+#container .icon img {
+    border-radius: 44.9px;
+}
+
+#container img {
   box-shadow: 0 0 6px #000;
 }
 

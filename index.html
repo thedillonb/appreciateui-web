@@ -8,7 +8,9 @@
     <meta name="google-site-verification" content="BARtsq3-GfnT5bBiJ8ioGxKgvrBKkKxnQdoSyV4GDFU" />
     
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-    
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
@@ -33,10 +35,18 @@
                     </a>
                 </li>
             </ul>
-
             <h3>Browse</h3>
             <ul>
                 <li menu-item="Recently Added" href="#/"></li>
+            </ul>
+
+            <h3>Icons</h3>
+            <ul>
+                <li menu-item="All Icons" href="#/icons"></li>
+            </ul>
+
+            <h3>UI Patterns</h3>
+            <ul>
                 <li ng-repeat="category in categories" menu-item="{{category.name}}" href="#/category/{{category.id}}"></li>
             </ul>
         </div>
