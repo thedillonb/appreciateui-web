@@ -8,6 +8,14 @@ var slimOptions = {
     railColor: '#111',
 };
 
+var slimOptionsContent = {
+    height: 'auto',
+    railVisible: true,
+    size: '10px',
+    railColor: '#111',
+    alwaysVisible: true  
+};
+
 /*
     Setup angular!
 */
@@ -106,7 +114,7 @@ function TitleCtrl() { }
 */
 function updateScreenshotScroll() {
     if (!isMobile) {  
-        $('#screenshots').slimScroll(slimOptions); 
+        $('#screenshots').slimScroll(slimOptionsContent); 
     }
 }
 
@@ -176,7 +184,7 @@ $(window).resize(function() {
     //Dont apply the custom scrollbar to non-mobile devices
     if (!isMobile) {
         $('#sidebar .inner-sidebar').slimScroll(slimOptions);
-        $('#screenshots').slimScroll(slimOptions);
+        $('#screenshots').slimScroll(slimOptionsContent);
     }
     
     //Always try to refresh the unveil plugin so that pictures show up
