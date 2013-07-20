@@ -20,7 +20,6 @@ a web specific application as well which spawned this project. I have also poste
 found on github: [appreciateui](https://github.com/thedillonb/appreciateui).
 
 
-
 Questions & Comments
 ---------------------
 
