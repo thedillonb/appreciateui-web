@@ -139,8 +139,7 @@ function updateScreenshotScroll() {
 */
 function massageScreenshotData(data) {
     return angular.forEach(data, function(d) { 
-        d.thumbUrl = "http://www.dillonbuchanan.com/appreciateui/downloader.php?id=" + d.url + "&w=296&h=444&ext=" + d.ext;
-        d.fullUrl = "http://www.dillonbuchanan.com/appreciateui/uploads/" + d.url + "." + d.ext; 
+        d.thumbUrl = "http://www.appreciateui.com/api/downloader.php?id=" + d.url + "&w=296&h=444&ext=" + d.ext; 
     });
 }
 
@@ -149,8 +148,7 @@ function massageScreenshotData(data) {
 */
 function massageIconData(data) {
     return angular.forEach(data, function(d) { 
-        d.thumbUrl = "http://www.dillonbuchanan.com/appreciateui/icon_downloader.php?id=" + d.url + "&w=256&h=256&ext=" + d.ext;
-        d.fullUrl = "http://www.dillonbuchanan.com/appreciateui/uploads_icons/" + d.url + "." + d.ext; 
+        d.thumbUrl = "http://www.appreciateui.com/api/icon_downloader.php?id=" + d.url + "&w=256&h=256&ext=" + d.ext;
     });
 }
 
